@@ -4,23 +4,17 @@ const details = document.querySelector(".details");
 const time = document.querySelector("img.time");
 const icon = document.querySelector(".icon img");
 
-const updateCity = async (city) => {
-  const cityDetails = await getCity(city);
-  const weather = await getWeather(cityDetails.Key);
-  return { cityDetails, weather };
-};
-
 const updateUI = (data) => {
   const { cityDetails, weather } = data;
 
   details.innerHTML = `
-  <h3 class="my-3">${cityDetails.EnglishName}</h3>
-          <h5 class="my-3">${weather.WeatherText}</h5>
-          <h4 class="display-5 my-3">
-            <span>${weather.Temperature.Metric.Value}</span>
-            <span>&deg;C</span>
-          </h4>
-  `;
+    <h3 class="my-3">${cityDetails.EnglishName}</h3>
+            <h5 class="my-3">${weather.WeatherText}</h5>
+            <h4 class="display-5 my-3">
+              <span>${weather.Temperature.Metric.Value}</span>
+              <span>&deg;C</span>
+            </h4>
+    `;
 
   const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
   icon.setAttribute("src", iconSrc);
@@ -31,6 +25,12 @@ const updateUI = (data) => {
   if (card.classList.contains("d-none")) {
     card.classList.remove("d-none");
   }
+};
+
+const updateCity = async (city) => {
+  const cityDetails = await getCity(city);
+  const weather = await getWeather(cityDetails.Key);
+  return { cityDetails, weather };
 };
 
 cityForm.addEventListener("submit", (e) => {
