@@ -1,5 +1,5 @@
 const key = "WnMWLHssBhsMCLqTi3qhcc06lTXfVICK";
-const base = "http://dataservice.accuweather.com/";
+const base = "https://crossorigin.me/http://dataservice.accuweather.com/";
 
 const getWeather = async (id) => {
   const query = `currentconditions/v1/${id}?apikey=${key}`;
